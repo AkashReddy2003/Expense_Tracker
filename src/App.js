@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import Auth from "./components/Auth";
+import Home from "./components/Home";
+import { ChakraProvider } from '@chakra-ui/react';
+import { useUserContext } from "./context/UserContext";
+import { useEffect } from "react";
 
 function App() {
+  const {auth}=useUserContext();
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      {auth?<Home/>:<Auth/>}
+    </ChakraProvider>
   );
 }
+
 
 export default App;
